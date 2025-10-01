@@ -6,31 +6,38 @@
   <title>Axion — Discord Bot</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
   <style>
-    :root{
-      --bg-gradient: linear-gradient(135deg, #2a0845, #6441a5, #7b2ed6);
-      --card:#1c1230; 
-      --accent:#9d4edd; 
+    :root {
+      --bg:#0b0b0f;
+      --card:#14121b;
+      --accent:#8a2be2; 
       --accent-2:#c77dff; 
-      --muted:#bfa8d9;
+      --muted:#aaa0b9;
     }
-    *{box-sizing:border-box}
-    body{
+    *{box-sizing:border-box; margin:0; padding:0}
+    body {
       font-family:Inter,system-ui,Arial; 
-      margin:0; 
-      background:var(--bg-gradient); 
-      color:#f4eaff; 
-      background-attachment: fixed;
+      background:var(--bg); 
+      color:#f5eaff; 
+      overflow-x:hidden;
+    }
+
+    /* Particle canvas */
+    #particles-js {
+      position:fixed;
+      top:0; left:0; width:100%; height:100%;
+      z-index:-1;
+      background: radial-gradient(circle at top, #1a0f29, #0b0b0f 70%);
     }
 
     /* HERO */
     .hero{
-      padding: 80px 20px; 
+      padding: 90px 20px; 
       text-align:center;
     }
     .hero-inner{max-width:900px; margin:0 auto}
-    .avatar{width:120px; height:120px; border-radius:18px; overflow:hidden; margin:0 auto 18px; box-shadow:0 10px 30px rgba(0,0,0,0.6); transition: transform .3s ease, box-shadow .3s ease;}
+    .avatar{width:120px; height:120px; border-radius:18px; overflow:hidden; margin:0 auto 18px; box-shadow:0 0 20px rgba(138,43,226,0.6); transition: transform .3s ease, box-shadow .3s ease;}
     .avatar img{width:100%; height:100%; object-fit:cover; display:block}
-    .avatar:hover{transform:scale(1.1) rotate(5deg); box-shadow:0 0 30px var(--accent-2);}
+    .avatar:hover{transform:scale(1.1) rotate(5deg); box-shadow:0 0 35px var(--accent-2);}
     h1{font-size:44px; margin:6px 0 6px; letter-spacing:1px}
     p.lead{color:var(--muted); margin:6px 0 18px}
 
@@ -45,27 +52,19 @@
       text-decoration:none; 
       font-weight:600; 
       transition:all 0.25s ease; 
-      position:relative; 
-      overflow:hidden;
     }
     .btn.primary{
       background:linear-gradient(90deg,var(--accent),var(--accent-2)); 
       border:none; 
-      box-shadow:0 8px 30px rgba(123,46,214,0.4)
+      box-shadow:0 8px 30px rgba(138,43,226,0.4)
     }
-    .btn:hover{
-      transform:scale(1.08); 
-      box-shadow:0 0 20px rgba(199,125,255,0.6);
-    }
-    .btn:active{
-      transform:scale(0.96);
-      box-shadow:0 0 15px rgba(199,125,255,0.9);
-    }
+    .btn:hover{transform:scale(1.08); box-shadow:0 0 25px rgba(199,125,255,0.7);}
+    .btn:active{transform:scale(0.96);}
 
     /* FEATURES */
     .features{max-width:1200px; margin:40px auto 60px; display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:18px; padding:0 20px}
     .card{background:var(--card); border-radius:14px; padding:18px; box-shadow:0 10px 30px rgba(0,0,0,0.6); border:1px solid rgba(255,255,255,0.05); transition:transform .25s ease, box-shadow .25s ease;}
-    .card:hover{transform:translateY(-6px) scale(1.03); box-shadow:0 15px 40px rgba(123,46,214,0.6);}
+    .card:hover{transform:translateY(-6px) scale(1.03); box-shadow:0 15px 40px rgba(138,43,226,0.6);}
     .card h3{margin:0 0 8px; font-size:18px}
     .card p{margin:0; color:var(--muted); font-size:13px}
 
@@ -87,6 +86,9 @@
   </style>
 </head>
 <body>
+  <!-- Particle background -->
+  <div id="particles-js"></div>
+
   <header class="hero">
     <div class="hero-inner">
       <div class="avatar"><img src="axxx.png" alt="Bot Avatar"></div>
@@ -141,5 +143,35 @@
   <footer>
     © 2025 Axion Bot. All rights reserved.
   </footer>
+
+  <!-- Particles.js Script -->
+  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+  <script>
+    particlesJS("particles-js", {
+      "particles": {
+        "number": { "value": 90 },
+        "color": { "value": ["#8a2be2","#c77dff","#ffffff"] },
+        "shape": { "type": "circle" },
+        "opacity": { "value": 0.6, "random": true },
+        "size": { "value": 3, "random": true },
+        "line_linked": {
+          "enable": true,
+          "distance": 150,
+          "color": "#8a2be2",
+          "opacity": 0.4,
+          "width": 1
+        },
+        "move": { "enable": true, "speed": 2, "direction": "none", "out_mode": "out" }
+      },
+      "interactivity": {
+        "events": {
+          "onhover": { "enable": true, "mode": "repulse" },
+          "onclick": { "enable": true, "mode": "push" }
+        },
+        "modes": { "repulse": { "distance": 100 }, "push": { "particles_nb": 4 } }
+      },
+      "retina_detect": true
+    });
+  </script>
 </body>
 </html>
