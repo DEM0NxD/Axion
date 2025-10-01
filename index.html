@@ -14,10 +14,10 @@
 
     /* HERO */
     .hero{
-      background: url('Banner.png') center/cover no-repeat, linear-gradient(180deg, rgba(2,6,23,0.65), rgba(2,6,23,0.85));
+      background: var(--bg);
       padding: 80px 20px; text-align:center; position:relative; overflow:hidden;
     }
-    .hero-inner{max-width:1100px; margin:0 auto}
+    .hero-inner{max-width:900px; margin:0 auto}
     .avatar{width:120px; height:120px; border-radius:18px; overflow:hidden; margin:0 auto 18px; box-shadow:0 10px 30px rgba(0,0,0,0.6)}
     .avatar img{width:100%; height:100%; object-fit:cover; display:block}
     h1{font-size:44px; margin:6px 0 6px; letter-spacing:1px}
@@ -28,27 +28,23 @@
     .btn.primary{background:linear-gradient(90deg,var(--accent),var(--accent-2)); border:none; box-shadow:0 8px 30px rgba(123,46,214,0.28)}
 
     /* FEATURES */
-    .features{max-width:1200px; margin:-40px auto 60px; display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:18px; padding:0 20px}
+    .features{max-width:1200px; margin:40px auto 60px; display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:18px; padding:0 20px}
     .card{background:var(--card); border-radius:14px; padding:18px; box-shadow:0 10px 30px rgba(0,0,0,0.5); border:1px solid rgba(255,255,255,0.02)}
     .card h3{margin:0 0 8px; font-size:18px}
     .card p{margin:0; color:var(--muted); font-size:13px}
 
-    /* DETAILS SECTION */
-    .details{max-width:1000px; margin:12px auto 80px; padding:0 20px; display:grid; grid-template-columns:1fr 360px; gap:34px}
-    .about h2{margin:0 0 8px}
-    .about p{color:var(--muted)}
-    .panel{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); padding:18px; border-radius:12px}
-
-    /* Giveaway badge */
-    .giveaway{display:flex; gap:12px; align-items:center}
-    .give-tag{background:linear-gradient(90deg,#ffb86b,#ff6b88); padding:8px 12px; border-radius:10px; color:#0b0b0b; font-weight:700}
+    /* DEVELOPERS */
+    .developers{max-width:900px; margin:40px auto; text-align:center; padding:20px}
+    .developers h2{margin-bottom:10px}
+    .dev-list{display:flex; justify-content:center; gap:20px; flex-wrap:wrap}
+    .dev-list a{color:var(--accent-2); font-weight:600; text-decoration:none; transition:0.2s}
+    .dev-list a:hover{color:#fff; text-decoration:underline}
 
     footer{max-width:1100px; margin:30px auto; padding:20px; color:var(--muted); text-align:center}
 
     /* small screens */
     @media (max-width:880px){
       h1{font-size:34px}
-      .details{grid-template-columns:1fr}
       .features{margin-top:18px}
     }
   </style>
@@ -61,84 +57,52 @@
       <p class="lead">Moderation, Security and Utilities — All in One Bot. Fast setup, powerful features, 24/7 protection.</p>
 
       <div class="cta">
-        <a class="btn primary" href="https://discord.com/oauth2/authorize?client_id=1353539896849207467&permissions=8&integration_type=0&scope=bot" target="_blank" rel="noopener">Invite Bot</a>
-        <a class="btn" href="https://discord.gg/KQgFVyxPNx" target="_blank" rel="noopener">Join Discord Server</a>
+        <a class="btn primary" href="https://discord.com/oauth2/authorize?client_id=1353539896849207467&permissions=8&integration_type=0&scope=bot">Invite Bot</a>
+        <a class="btn" href="https://discord.gg/KQgFVyxPNx">Join Discord Server</a>
       </div>
     </div>
   </header>
 
-  <!-- Features grid -->
-  <section class="features" aria-label="Features">
-    <article class="card">
+  <!-- FEATURES -->
+  <section class="features">
+    <div class="card">
       <h3>Autoresponder</h3>
-      <p>Automatically respond to common messages and keywords with configurable replies and embeds.</p>
-    </article>
-
-    <article class="card">
+      <p>Set automatic replies to keywords and phrases.</p>
+    </div>
+    <div class="card">
       <h3>Autorole</h3>
-      <p>Assign roles automatically when users join, with options for welcome messages and verification gates.</p>
-    </article>
-
-    <article class="card">
+      <p>Automatically assign roles to new members.</p>
+    </div>
+    <div class="card">
       <h3>Utility</h3>
-      <p>Timers, reminders, customizable welcome panels, polls, and quick server tools for admins.</p>
-    </article>
-
-    <article class="card">
+      <p>Useful commands to manage your server easily.</p>
+    </div>
+    <div class="card">
       <h3>Trigger Roles</h3>
-      <p>Allow users to self-assign roles via reactions or a simple selector UI — great for interests/regions.</p>
-    </article>
-
-    <article class="card">
+      <p>Grant or remove roles when words are triggered.</p>
+    </div>
+    <div class="card">
       <h3>Info</h3>
-      <p>Fast info commands: user/server stats, role & channel lookups, bot uptime, and command help.</p>
-    </article>
-
-    <article class="card">
+      <p>Quick access to user, server, and bot info.</p>
+    </div>
+    <div class="card">
       <h3>Moderation</h3>
-      <p>Powerful moderation tools: warn/kick/ban, automod, anti-spam, link & invite filtering, and audit logs.</p>
-    </article>
-
-    <article class="card">
-      <h3>Giveaway</h3>
-      <p>Easy giveaway creation with reaction-based entry, scheduled endings, and winner selection.</p>
-    </article>
+      <p>Ban, kick, mute and keep your server safe.</p>
+    </div>
   </section>
 
-  <section class="details">
-    <div class="about">
-      <h2>Secure Your Server with Confidence</h2>
-      <p>Axion keeps your community safe from unwanted intrusion and spam with configurable protections and around-the-clock monitoring. Deploy advanced rules, tune sensitivity, and automate routine tasks so moderators can focus on what matters.</p>
-
-      <ul style="color:var(--muted); margin-top:12px; line-height:1.6">
-        <li><strong>Real-time detection:</strong> Instantly identify and neutralize threats.</li>
-        <li><strong>Customizable:</strong> Tailor protection to your server's needs.</li>
-        <li><strong>Simple setup:</strong> Use guided setup or import presets.</li>
-      </ul>
+  <!-- DEVELOPERS -->
+  <section class="developers">
+    <h2>Developers</h2>
+    <div class="dev-list">
+      <a href="https://discord.com/users/1309513005507153941" target="_blank">ShaN</a>
+      <a href="https://discord.com/users/1384879164204515399" target="_blank">Aayu</a>
+      <a href="https://discord.com/users/1387261652772065360" target="_blank">Jaxxy</a>
     </div>
-
-    <aside class="panel">
-      <h3 style="margin-top:0">Quick Actions</h3>
-      <p style="color:var(--muted)">Use these buttons when you want to quickly invite the bot or join the community.</p>
-      <div style="display:flex; gap:10px; margin-top:12px; flex-wrap:wrap">
-        <a class="btn primary" href="https://discord.com/oauth2/authorize?client_id=1353539896849207467&permissions=8&integration_type=0&scope=bot" target="_blank" rel="noopener">Invite Axion</a>
-        <a class="btn" href="https://discord.gg/KQgFVyxPNx" target="_blank" rel="noopener">Join Server</a>
-      </div>
-
-      <hr style="border:none; border-top:1px solid rgba(255,255,255,0.04); margin:16px 0">
-
-      <div class="giveaway">
-        <div class="give-tag">GIVEAWAY</div>
-        <div>
-          <strong>Weekly Nitro Draw</strong>
-          <div style="color:var(--muted); font-size:13px">Host giveaways with reaction entries and automatic winner selection.</div>
-        </div>
-      </div>
-    </aside>
   </section>
 
   <footer>
-    <small>Place <code>Banner.png</code> and <code>axxx.png</code> in the same folder as this HTML file before deploying.</small>
+    © 2025 Axion Bot. All rights reserved.
   </footer>
 </body>
 </html>
