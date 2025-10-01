@@ -8,14 +8,13 @@
   <style>
     :root{
       --bg:#05060a; --card:#07102a; --accent:#7b2ed6; --accent-2:#b24bf0; --muted:#91a0b8;
-      --glass: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
     }
     *{box-sizing:border-box}
     body{font-family:Inter,system-ui,Arial; margin:0; background:var(--bg); color:#e6eef9}
 
     /* HERO */
     .hero{
-      background: url('/mnt/data/Banner.png') center/cover no-repeat, linear-gradient(180deg, rgba(2,6,23,0.65), rgba(2,6,23,0.85));
+      background: url('Banner.png') center/cover no-repeat, linear-gradient(180deg, rgba(2,6,23,0.65), rgba(2,6,23,0.85));
       padding: 80px 20px; text-align:center; position:relative; overflow:hidden;
     }
     .hero-inner{max-width:1100px; margin:0 auto}
@@ -27,11 +26,6 @@
     .cta{display:inline-flex; gap:12px; margin-top:14px}
     .btn{background:transparent; border:1px solid rgba(255,255,255,0.12); padding:10px 18px; border-radius:999px; color:#fff; text-decoration:none; font-weight:600}
     .btn.primary{background:linear-gradient(90deg,var(--accent),var(--accent-2)); border:none; box-shadow:0 8px 30px rgba(123,46,214,0.28)}
-
-    /* rating */
-    .rating{display:flex; align-items:center; gap:10px; justify-content:center; margin-top:14px}
-    .stars{display:inline-flex; gap:6px}
-    .star{width:22px; height:22px; display:inline-block}
 
     /* FEATURES */
     .features{max-width:1200px; margin:-40px auto 60px; display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:18px; padding:0 20px}
@@ -62,24 +56,13 @@
 <body>
   <header class="hero">
     <div class="hero-inner">
-      <div class="avatar"><img src="/mnt/data/axxx.png" alt="Bot Avatar"></div>
+      <div class="avatar"><img src="axxx.png" alt="Bot Avatar"></div>
       <h1>Axion — Moderation, Security & Utilities</h1>
       <p class="lead">Moderation, Security and Utilities — All in One Bot. Fast setup, powerful features, 24/7 protection.</p>
 
       <div class="cta">
-        <!-- REPLACE BOT_INVITE_LINK with your bot invite URL -->
-        <a id="inviteBtn" class="btn primary" href="https://discord.com/oauth2/authorize?client_id=1353539896849207467&permissions=8&integration_type=0&scope=bot" target="_blank" rel="noopener">Invite Bot</a>
-        <!-- REPLACE SERVER_INVITE_LINK with your Discord server invite -->
-        <a id="serverBtn" class="btn" href="https://discord.gg/KQgFVyxPNx" target="_blank" rel="noopener">Join Discord Server</a>
-      </div>
-
-      <div class="rating" aria-hidden="true">
-        <div class="stars" id="stars">
-          <!-- SVG stars will be populated by JS -->
-        </div>
-        <div class="meta">
-          <strong id="ratingValue">4.7</strong> • <span style="color:var(--muted)">1.2k+ votes</span>
-        </div>
+        <a class="btn primary" href="https://discord.com/oauth2/authorize?client_id=1353539896849207467&permissions=8&integration_type=0&scope=bot" target="_blank" rel="noopener">Invite Bot</a>
+        <a class="btn" href="https://discord.gg/KQgFVyxPNx" target="_blank" rel="noopener">Join Discord Server</a>
       </div>
     </div>
   </header>
@@ -132,7 +115,6 @@
         <li><strong>Customizable:</strong> Tailor protection to your server's needs.</li>
         <li><strong>Simple setup:</strong> Use guided setup or import presets.</li>
       </ul>
-
     </div>
 
     <aside class="panel">
@@ -152,57 +134,11 @@
           <div style="color:var(--muted); font-size:13px">Host giveaways with reaction entries and automatic winner selection.</div>
         </div>
       </div>
-
-      <hr style="border:none; border-top:1px solid rgba(255,255,255,0.04); margin:16px 0">
-
-      <div style="font-size:13px; color:var(--muted);">Powered by Axion • <span id="usersCount">120k</span> servers protected</div>
     </aside>
   </section>
 
   <footer>
-    <small>Place the files <code>Banner.png</code> and <code>axxx.png</code> in the same folder as this HTML file. Then replace <code>BOT_INVITE_LINK</code> and <code>SERVER_INVITE_LINK</code> in the HTML with your real links.</small>
+    <small>Place <code>Banner.png</code> and <code>axxx.png</code> in the same folder as this HTML file before deploying.</small>
   </footer>
-
-  <script>
-    // Populate stars & interactive rating demo
-    (function(){
-      const starsEl = document.getElementById('stars');
-      const ratingValue = document.getElementById('ratingValue');
-      const rating = 4.7; // default — update as needed
-      const whole = Math.floor(rating);
-      const frac = rating - whole;
-
-      for(let i=1;i<=5;i++){
-        const svg = document.createElementNS('http://www.w3.org/2000/svg','svg');
-        svg.setAttribute('viewBox','0 0 24 24');
-        svg.classList.add('star');
-        svg.innerHTML = `<path d="M12 .587l3.668 7.431L23.4 9.75l-5.7 5.56L19.335 24 12 19.897 4.665 24l1.635-8.69L.6 9.75l7.732-1.732L12 .587z" fill="rgba(255,255,255,0.12)"/>`;
-        starsEl.appendChild(svg);
-      }
-
-      // color stars according to rating
-      const starNodes = starsEl.querySelectorAll('svg path');
-      for(let i=0;i<starNodes.length;i++){
-        if(i < whole){
-          starNodes[i].setAttribute('fill','url(#g)');
-        } else if(i === whole && frac>0){
-          // partial overlay technique: full color for this star
-          starNodes[i].setAttribute('fill','url(#g)');
-        } else {
-          starNodes[i].setAttribute('fill','rgba(255,255,255,0.12)');
-        }
-      }
-
-      // append gradient definition to first svg so fill url(#g) exists
-      const first = starsEl.querySelector('svg');
-      if(first){
-        const grad = document.createElementNS('http://www.w3.org/2000/svg','defs');
-        grad.innerHTML = `<linearGradient id="g" x1="0" x2="1" y1="0" y2="0"><stop offset="0%" stop-color="#ffd166"/><stop offset="100%" stop-color="#ff6b6b"/></linearGradient>`;
-        first.insertBefore(grad, first.firstChild);
-      }
-
-      ratingValue.textContent = rating.toFixed(1);
-    })();
-  </script>
 </body>
 </html>
