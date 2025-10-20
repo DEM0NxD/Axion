@@ -73,70 +73,14 @@
     .btn:hover{transform:scale(1.08); box-shadow:0 0 30px rgba(199,125,255,0.8);}
     .btn:active{transform:scale(0.96);}
 
-    /* FEATURES GRID */
-    .features{
-      max-width:1200px; 
-      margin:40px auto 60px; 
-      display:grid; 
-      grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); 
-      gap:18px; 
-      padding:0 20px;
-      position: relative;
-      z-index:1;
-    }
-    .card{
-      background:var(--card); 
-      border-radius:14px; 
-      padding:18px; 
-      box-shadow:0 10px 30px rgba(0,0,0,0.6); 
-      border:1px solid rgba(255,255,255,0.05); 
-      transition:transform .25s ease, box-shadow .25s ease;
-    }
-    .card:hover{
-      transform:translateY(-6px) scale(1.03); 
-      box-shadow:0 15px 50px rgba(138,43,226,0.7);
-    }
-    .card h3{margin:0 0 8px; font-size:18px; display:flex; align-items:center; gap:6px;}
-    .card p{margin:0; color:var(--muted); font-size:13px;}
-
-    /* AI Feature Card */
-    .ai-card {
-      background: linear-gradient(145deg, #1f152a, #241a34);
-      border-radius:14px;
-      padding:16px;
-      overflow:hidden;
-      color:#fff;
-      font-size:13px;
-    }
-    .ai-card::before {
-      content:'AI';
-      position:absolute;
-      top:-10px; right:-10px;
-      background:var(--accent);
-      color:#fff;
-      padding:6px 12px;
-      font-weight:700;
-      border-radius:12px;
-      font-size:12px;
-      transform:rotate(15deg);
-    }
-    .ai-message {
-      background:rgba(138,43,226,0.1);
-      padding:8px 12px;
-      border-radius:10px;
-      margin:6px 0;
-      transition:0.3s;
-    }
-    .ai-message:hover {background:rgba(138,43,226,0.25);}
-
     /* FEATURES LIST */
-    .features-list {max-width:1200px; margin:60px auto; padding:0 20px; display:grid; gap:15px; position: relative; z-index:1;}
+    .features-list {max-width:1200px; margin:60px auto; padding:0 20px; display:grid; gap:30px; position: relative; z-index:1;}
     .features-list h2{color:var(--accent-2); text-align:center; margin-bottom:15px;}
-    .feature-grid {display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:12px;}
+    .feature-grid {display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:15px;}
     .feature-card {
       background: #1a0f29;
       color:#fff;
-      padding:12px 8px;
+      padding:18px 12px;
       border-radius:12px;
       text-align:center;
       font-weight:600;
@@ -147,6 +91,7 @@
       transform:translateY(-5px);
       box-shadow:0 10px 30px rgba(199,125,255,0.6);
     }
+    .feature-card p{font-weight:400; font-size:14px; color:var(--muted); margin-top:8px;}
 
     /* DEVELOPERS */
     .developers{max-width:900px; margin:40px auto; text-align:center; padding:20px; position: relative; z-index:1;}
@@ -164,7 +109,6 @@
 
     @media (max-width:880px){
       h1{font-size:34px;}
-      .features{margin-top:18px;}
     }
   </style>
 </head>
@@ -190,55 +134,64 @@
   <section class="features-list">
     <h2>🏠 General Features</h2>
     <div class="feature-grid">
-      <div class="feature-card">🔊 Voice</div>
-      <div class="feature-card">🎮 Games</div>
-      <div class="feature-card">👋 Welcomer</div>
-      <div class="feature-card">🎫 Ticketing</div>
-      <div class="feature-card">✏️ Auto Setup</div>
-      <div class="feature-card">🧩 Autorole</div>
-      <div class="feature-card">🎉 Fun</div>
-      <div class="feature-card">🚫 Ignore Channels</div>
-      <div class="feature-card">📜 Logging</div>
-      <div class="feature-card">➕ Counting</div>
-      <div class="feature-card">⭐ Leveling</div>
-      <div class="feature-card">📊 Tracking</div>
+      <div class="feature-card">
+        🔊 Voice<br><p>Engage with voice channels and enjoy clear audio streaming.</p>
+      </div>
+      <div class="feature-card">
+        🎮 Games<br><p>Play interactive games with server members.</p>
+      </div>
+      <div class="feature-card">
+        👋 Welcomer<br><p>Greet new members automatically with custom messages.</p>
+      </div>
+      <div class="feature-card">
+        🎫 Ticketing<br><p>Manage support requests easily through a ticket system.</p>
+      </div>
+      <div class="feature-card">
+        ✏️ Auto Setup<br><p>Quickly configure the bot with a setup command.</p>
+      </div>
+      <div class="feature-card">
+        🧩 Autorole<br><p>Assign roles to members automatically when they join.</p>
+      </div>
+      <div class="feature-card">
+        🎉 Fun<br><p>Access fun commands to entertain your server members.</p>
+      </div>
+      <div class="feature-card">
+        📜 Logging<br><p>Track server activity such as joins, leaves, and message edits.</p>
+      </div>
     </div>
 
     <h2>🪐 Bot Features</h2>
     <div class="feature-grid">
-      <div class="feature-card">🛡 Security</div>
-      <div class="feature-card">🤖 Automod</div>
-      <div class="feature-card">🛠 Utility</div>
-      <div class="feature-card">🎵 Music</div>
-      <div class="feature-card">🛡 Moderation</div>
-      <div class="feature-card">📂 General</div>
-      <div class="feature-card">🎁 Giveaway</div>
-      <div class="feature-card">🤖 AI</div>
-      <div class="feature-card">💾 Backup</div>
-      <div class="feature-card">📺 Roleplay</div>
-      <div class="feature-card">📝 Staff Application</div>
-    </div>
-  </section>
-
-  <!-- EXISTING FEATURE CARDS -->
-  <section class="features">
-    <div class="card"><h3>💬 Autoresponder</h3><p>Set automatic replies to keywords and phrases.</p></div>
-    <div class="card"><h3>👤 Autorole</h3><p>Automatically assign roles to new members.</p></div>
-    <div class="card"><h3>🛠 Utility</h3><p>Useful commands to manage your server easily.</p></div>
-    <div class="card"><h3>🤖 AI Support</h3><p>Ask questions, generate text, or get suggestions using AI commands.</p></div>
-    <div class="card"><h3>🎯 Trigger Roles</h3><p>Grant or remove roles when words are triggered.</p></div>
-    <div class="card"><h3>ℹ Info</h3><p>Quick access to user, server, and bot info.</p></div>
-    <div class="card"><h3>🛡 Moderation</h3><p>Ban, kick, mute and keep your server safe.</p></div>
-    <div class="card"><h3>🎉 Giveaways</h3><p>Host giveaways with timers, winners, and prizes.</p></div>
-    <div class="card"><h3>📜 Logging</h3><p>Track member joins, leaves, and message edits/deletes.</p></div>
-    <div class="card"><h3>🎵 Music</h3><p>Play music in voice channels from YouTube and Spotify.</p></div>
-    <div class="card"><h3>🎫 Ticket System</h3><p>Create a ticket for support and manage user requests easily.</p></div>
-    <div class="card ai-card">
-      <h3>🤖 AI Demo</h3>
-      <div class="ai-message">User: How do I ban a member?</div>
-      <div class="ai-message">AI: Use the `!ban @user` command to remove a member from the server.</div>
-      <div class="ai-message">User: Can you greet new members?</div>
-      <div class="ai-message">AI: Yes! Enable welcome messages to greet newcomers automatically.</div>
+      <div class="feature-card">
+        🛡 Security<br><p>Protect your server from raids, spam, and malicious actions.</p>
+      </div>
+      <div class="feature-card">
+        🤖 Automod<br><p>Automatic moderation for messages, links, and bad words.</p>
+      </div>
+      <div class="feature-card">
+        🛠 Utility<br><p>Server management tools and helpful commands.</p>
+      </div>
+      <div class="feature-card">
+        🎵 Music<br><p>Play music in voice channels from YouTube, Spotify, and more.</p>
+      </div>
+      <div class="feature-card">
+        🛡 Moderation<br><p>Ban, kick, mute, and manage members effectively.</p>
+      </div>
+      <div class="feature-card">
+        🎁 Giveaway<br><p>Create giveaways with timers, winners, and prizes.</p>
+      </div>
+      <div class="feature-card">
+        🤖 AI<br><p>Ask questions, get suggestions, or generate text using AI commands.</p>
+      </div>
+      <div class="feature-card">
+        💾 Backup<br><p>Backup server settings and roles to prevent data loss.</p>
+      </div>
+      <div class="feature-card">
+        📺 Roleplay<br><p>Interactive roleplay commands for server engagement.</p>
+      </div>
+      <div class="feature-card">
+        📝 Staff Application<br><p>Collect and manage applications for staff positions.</p>
+      </div>
     </div>
   </section>
 
