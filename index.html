@@ -73,7 +73,7 @@
     .btn:hover{transform:scale(1.08); box-shadow:0 0 30px rgba(199,125,255,0.8);}
     .btn:active{transform:scale(0.96);}
 
-    /* FEATURES */
+    /* FEATURES GRID */
     .features{
       max-width:1200px; 
       margin:40px auto 60px; 
@@ -129,6 +129,25 @@
     }
     .ai-message:hover {background:rgba(138,43,226,0.25);}
 
+    /* FEATURES LIST */
+    .features-list {max-width:1200px; margin:60px auto; padding:0 20px; display:grid; gap:15px; position: relative; z-index:1;}
+    .features-list h2{color:var(--accent-2); text-align:center; margin-bottom:15px;}
+    .feature-grid {display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:12px;}
+    .feature-card {
+      background: #1a0f29;
+      color:#fff;
+      padding:12px 8px;
+      border-radius:12px;
+      text-align:center;
+      font-weight:600;
+      box-shadow:0 6px 20px rgba(138,43,226,0.4);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .feature-card:hover {
+      transform:translateY(-5px);
+      box-shadow:0 10px 30px rgba(199,125,255,0.6);
+    }
+
     /* DEVELOPERS */
     .developers{max-width:900px; margin:40px auto; text-align:center; padding:20px; position: relative; z-index:1;}
     .developers h2{margin-bottom:10px;}
@@ -153,6 +172,7 @@
   <!-- Small Moving Particles -->
   <canvas id="particles-cool"></canvas>
 
+  <!-- HERO -->
   <header class="hero">
     <div class="hero-inner">
       <div class="avatar"><img src="axxx.png" alt="Bot Avatar"></div>
@@ -166,7 +186,41 @@
     </div>
   </header>
 
-  <!-- FEATURES -->
+  <!-- GENERAL FEATURES LIST -->
+  <section class="features-list">
+    <h2>🏠 General Features</h2>
+    <div class="feature-grid">
+      <div class="feature-card">🔊 Voice</div>
+      <div class="feature-card">🎮 Games</div>
+      <div class="feature-card">👋 Welcomer</div>
+      <div class="feature-card">🎫 Ticketing</div>
+      <div class="feature-card">✏️ Auto Setup</div>
+      <div class="feature-card">🧩 Autorole</div>
+      <div class="feature-card">🎉 Fun</div>
+      <div class="feature-card">🚫 Ignore Channels</div>
+      <div class="feature-card">📜 Logging</div>
+      <div class="feature-card">➕ Counting</div>
+      <div class="feature-card">⭐ Leveling</div>
+      <div class="feature-card">📊 Tracking</div>
+    </div>
+
+    <h2>🪐 Bot Features</h2>
+    <div class="feature-grid">
+      <div class="feature-card">🛡 Security</div>
+      <div class="feature-card">🤖 Automod</div>
+      <div class="feature-card">🛠 Utility</div>
+      <div class="feature-card">🎵 Music</div>
+      <div class="feature-card">🛡 Moderation</div>
+      <div class="feature-card">📂 General</div>
+      <div class="feature-card">🎁 Giveaway</div>
+      <div class="feature-card">🤖 AI</div>
+      <div class="feature-card">💾 Backup</div>
+      <div class="feature-card">📺 Roleplay</div>
+      <div class="feature-card">📝 Staff Application</div>
+    </div>
+  </section>
+
+  <!-- EXISTING FEATURE CARDS -->
   <section class="features">
     <div class="card"><h3>💬 Autoresponder</h3><p>Set automatic replies to keywords and phrases.</p></div>
     <div class="card"><h3>👤 Autorole</h3><p>Automatically assign roles to new members.</p></div>
@@ -192,8 +246,8 @@
   <section class="developers">
     <h2>Developers</h2>
     <div class="dev-list">
-      <a href="https://discord.com/users/1423139998349267025" target="_blank">Jay</a>
       <a href="https://discord.com/users/1384879164204515399" target="_blank">Aayu</a>
+      <a href="https://discord.com/users/1423139998349267025" target="_blank">Jay</a>
       <a href="https://discord.com/users/1402267752294518927" target="_blank">Phantom</a>
     </div>
   </section>
