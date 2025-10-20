@@ -16,23 +16,17 @@
     *{box-sizing:border-box; margin:0; padding:0}
     body {
       font-family:Inter,system-ui,Arial; 
-      background:var(--bg); 
+      background: linear-gradient(135deg,#0b0b0f,#2a003d);
       color:#f5eaff; 
       overflow-x:hidden;
-    }
-
-    /* Particle canvas */
-    #particles-js {
-      position:fixed;
-      top:0; left:0; width:100%; height:100%;
-      z-index:-1;
-      background: radial-gradient(circle at top, #1a0f29, #0b0b0f 70%);
     }
 
     /* HERO */
     .hero{
       padding: 90px 20px; 
       text-align:center;
+      position: relative;
+      z-index: 1;
     }
     .hero-inner{max-width:900px; margin:0 auto}
     .avatar{width:120px; height:120px; border-radius:18px; overflow:hidden; margin:0 auto 18px; box-shadow:0 0 20px rgba(138,43,226,0.6); transition: transform .3s ease, box-shadow .3s ease;}
@@ -115,11 +109,27 @@
       h1{font-size:34px}
       .features{margin-top:18px}
     }
+
+    /* COOL PARTICLES */
+    #cool-particles {
+      position: fixed;
+      top:0; left:0; width:100%; height:100%;
+      z-index:0;
+      pointer-events:none;
+    }
+    .particle {
+      position: absolute;
+      border-radius: 50%;
+      background: linear-gradient(45deg,#8a2be2,#c77dff);
+      opacity: 0.6;
+      pointer-events:none;
+      will-change: transform;
+    }
   </style>
 </head>
 <body>
-  <!-- Particle background -->
-  <div id="particles-js"></div>
+  <!-- Cool Particles -->
+  <canvas id="cool-particles"></canvas>
 
   <header class="hero">
     <div class="hero-inner">
@@ -170,34 +180,74 @@
     © 2025 AxioN Bot. All rights reserved.
   </footer>
 
-  <!-- Particles.js Script -->
-  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+  <!-- Cool Particle Script -->
   <script>
-    particlesJS("particles-js", {
-      "particles": {
-        "number": { "value": 80 },
-        "color": { "value": ["#8a2be2","#c77dff","#ffffff"] },
-        "shape": { "type": "circle" },
-        "opacity": { "value": 0.6, "random": true },
-        "size": { "value": 3, "random": true },
-        "line_linked": {
-          "enable": true,
-          "distance": 120,
-          "color": "#8a2be2",
-          "opacity": 0.4,
-          "width": 1
-        },
-        "move": { "enable": true, "speed": 2, "direction": "none", "out_mode": "out" }
-      },
-      "interactivity": {
-        "events": {
-          "onhover": { "enable": true, "mode": "repulse" },
-          "onclick": { "enable": true, "mode": "push" }
-        },
-        "modes": { "repulse": { "distance": 100 }, "push": { "particles_nb": 4 } }
-      },
-      "retina_detect": true
+    const canvas = document.getElementById('cool-particles');
+    const ctx = canvas.getContext('2d');
+    let particles = [];
+    let width = canvas.width = window.innerWidth;
+    let height = canvas.height = window.innerHeight;
+
+    window.addEventListener('resize', ()=>{
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
     });
+
+    function Particle() {
+      this.x = Math.random()*width;
+      this.y = Math.random()*height;
+      this.radius = Math.random()*3+1;
+      this.speedX = (Math.random()-0.5)*1.5;
+      this.speedY = (Math.random()-0.5)*1.5;
+      this.color = `rgba(138,43,226,${Math.random()*0.7+0.3})`;
+    }
+
+    Particle.prototype.update = function(){
+      this.x += this.speedX;
+      this.y += this.speedY;
+      if(this.x<0 || this.x>width) this.speedX*=-1;
+      if(this.y<0 || this.y>height) this.speedY*=-1;
+    }
+
+    Particle.prototype.draw = function(){
+      ctx.beginPath();
+      ctx.arc(this.x,this.y,this.radius,0,Math.PI*2);
+      ctx.fillStyle = this.color;
+      ctx.fill();
+    }
+
+    function connectParticles(){
+      for(let i=0;i<particles.length;i++){
+        for(let j=i;j<particles.length;j++){
+          let dx = particles[i].x - particles[j].x;
+          let dy = particles[i].y - particles[j].y;
+          let dist = Math.sqrt(dx*dx + dy*dy);
+          if(dist<100){
+            ctx.beginPath();
+            ctx.strokeStyle = `rgba(138,43,226,${0.2-(dist/500)})`;
+            ctx.lineWidth=1;
+            ctx.moveTo(particles[i].x,particles[i].y);
+            ctx.lineTo(particles[j].x,particles[j].y);
+            ctx.stroke();
+          }
+        }
+      }
+    }
+
+    function init(){
+      particles = [];
+      for(let i=0;i<80;i++) particles.push(new Particle());
+    }
+
+    function animate(){
+      ctx.clearRect(0,0,width,height);
+      particles.forEach(p=>{p.update();p.draw();});
+      connectParticles();
+      requestAnimationFrame(animate);
+    }
+
+    init();
+    animate();
   </script>
 </body>
 </html>
