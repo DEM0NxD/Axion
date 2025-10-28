@@ -8,19 +8,28 @@
   <style>
     :root {
       --bg:#0b0b0f;
-      --card:#14121b;
+      --card:rgba(20,18,27,0.5);
       --accent:#8a2be2; 
       --accent-2:#c77dff; 
       --muted:#aaa0b9;
+      --glow:#c77dff;
     }
 
     *{box-sizing:border-box; margin:0; padding:0;}
     body {
       font-family:Inter,system-ui,Arial; 
       background: linear-gradient(135deg,#0b0b0f,#2a003d);
+      background-size: 400% 400%;
+      animation: gradientBG 15s ease infinite;
       color:#f5eaff; 
       overflow-x:hidden;
       position: relative;
+    }
+
+    @keyframes gradientBG {
+      0%{background-position:0% 50%;}
+      50%{background-position:100% 50%;}
+      100%{background-position:0% 50%;}
     }
 
     /* SMALL MOVING PARTICLES */
@@ -36,79 +45,125 @@
 
     /* HERO */
     .hero{
-      padding: 90px 20px; 
+      padding: 100px 20px; 
       text-align:center;
       position: relative;
       z-index:1;
     }
     .hero-inner{max-width:900px; margin:0 auto;}
     .avatar{
-      width:120px; height:120px; border-radius:18px; overflow:hidden; 
-      margin:0 auto 18px; 
-      box-shadow:0 0 20px rgba(138,43,226,0.6); 
-      transition: transform .3s ease, box-shadow .3s ease;
+      width:140px; height:140px; border-radius:25px; overflow:hidden; 
+      margin:0 auto 20px; 
+      box-shadow:0 0 30px rgba(138,43,226,0.7); 
+      transition: transform 0.5s ease, box-shadow 0.5s ease;
+      animation: float 4s ease-in-out infinite;
     }
     .avatar img{width:100%; height:100%; object-fit:cover;}
-    .avatar:hover{transform:scale(1.1) rotate(5deg); box-shadow:0 0 40px var(--accent-2);}
-    h1{font-size:44px; margin:6px 0 6px; letter-spacing:1px;}
-    p.lead{color:var(--muted); margin:6px 0 18px;}
+    .avatar:hover{
+      transform:scale(1.2) rotate(5deg);
+      box-shadow:0 0 60px var(--accent-2);
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0px);}
+      50% { transform: translateY(-10px);}
+    }
+
+    h1{
+      font-size:48px; 
+      margin:12px 0; 
+      letter-spacing:1px;
+      background: linear-gradient(90deg,var(--accent),var(--accent-2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    p.lead{color:var(--muted); margin:6px 0 24px;}
 
     /* BUTTONS */
-    .cta{display:inline-flex; gap:12px; margin-top:14px; flex-wrap:wrap;}
+    .cta{display:inline-flex; gap:16px; margin-top:18px; flex-wrap:wrap;}
     .btn{
       background:transparent; 
       border:1px solid rgba(255,255,255,0.2); 
-      padding:12px 20px; 
+      padding:14px 24px; 
       border-radius:999px; 
       color:#fff; 
       text-decoration:none; 
       font-weight:600; 
-      transition:all 0.25s ease; 
+      transition:all 0.3s ease; 
+      backdrop-filter: blur(4px);
     }
     .btn.primary{
       background:linear-gradient(90deg,var(--accent),var(--accent-2)); 
       border:none; 
-      box-shadow:0 8px 30px rgba(138,43,226,0.4)
+      box-shadow:0 0 20px rgba(138,43,226,0.5);
     }
-    .btn:hover{transform:scale(1.08); box-shadow:0 0 30px rgba(199,125,255,0.8);}
-    .btn:active{transform:scale(0.96);}
+    .btn:hover{
+      transform:scale(1.1);
+      box-shadow:0 0 40px rgba(199,125,255,0.9);
+    }
+    .btn:active{transform:scale(0.95);}
 
     /* FEATURES LIST */
-    .features-list {max-width:1200px; margin:60px auto; padding:0 20px; display:grid; gap:30px; position: relative; z-index:1;}
-    .features-list h2{color:var(--accent-2); text-align:center; margin-bottom:15px;}
-    .feature-grid {display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:15px;}
+    .features-list {max-width:1200px; margin:60px auto; padding:0 20px; display:grid; gap:40px; position: relative; z-index:1;}
+    .features-list h2{color:var(--accent-2); text-align:center; margin-bottom:20px; font-size:32px;}
+
+    .feature-grid {
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+      gap:20px;
+    }
+
     .feature-card {
-      background: #1a0f29;
+      background: var(--card);
       color:#fff;
-      padding:18px 12px;
-      border-radius:12px;
+      padding:20px 15px;
+      border-radius:20px;
       text-align:center;
       font-weight:600;
-      box-shadow:0 6px 20px rgba(138,43,226,0.4);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      box-shadow:0 6px 20px rgba(138,43,226,0.3);
+      backdrop-filter: blur(8px);
+      transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
     }
     .feature-card:hover {
-      transform:translateY(-5px);
-      box-shadow:0 10px 30px rgba(199,125,255,0.6);
+      transform:translateY(-10px) scale(1.05);
+      box-shadow:0 10px 40px rgba(199,125,255,0.7);
+      background: rgba(30,20,50,0.7);
     }
-    .feature-card p{font-weight:400; font-size:14px; color:var(--muted); margin-top:8px;}
+    .feature-card p{
+      font-weight:400; 
+      font-size:14px; 
+      color:var(--muted); 
+      margin-top:10px;
+    }
 
-    /* DEVELOPERS */
+    /* DEVELOPERS & OWNERS */
     .developers{max-width:900px; margin:40px auto; text-align:center; padding:20px; position: relative; z-index:1;}
-    .developers h2{margin-bottom:10px;}
+    .developers h2{margin-bottom:10px; font-size:28px; color:var(--accent);}
     .dev-list{display:flex; justify-content:center; gap:20px; flex-wrap:wrap;}
     .dev-list a{
-      color:var(--accent-2); font-weight:600; text-decoration:none; transition:0.25s;
+      color:var(--accent-2); 
+      font-weight:600; 
+      text-decoration:none; 
+      transition:0.3s; 
+      padding:8px 16px;
+      border-radius:12px;
+      background: rgba(20,18,27,0.5);
+      backdrop-filter: blur(6px);
+      box-shadow:0 0 10px var(--accent-2);
     }
-    .dev-list a:hover{color:#fff; text-shadow:0 0 15px var(--accent-2); transform:scale(1.1);}
-    .dev-list a:active{transform:scale(0.95);}
+    .dev-list a:hover{
+      color:#fff; 
+      text-shadow:0 0 15px var(--accent-2); 
+      transform:scale(1.1);
+      box-shadow:0 0 25px var(--accent);
+    }
 
     footer{
-      max-width:1100px; margin:30px auto; padding:20px; color:var(--muted); text-align:center; position: relative; z-index:1;
+      max-width:1100px; margin:40px auto; padding:20px; color:var(--muted); text-align:center; position: relative; z-index:1;
     }
 
     @media (max-width:880px){
-      h1{font-size:34px;}
+      h1{font-size:38px;}
+      .feature-grid{grid-template-columns:repeat(auto-fit,minmax(160px,1fr));}
     }
   </style>
 </head>
@@ -134,91 +189,54 @@
   <section class="features-list">
     <h2>🏠 General Features</h2>
     <div class="feature-grid">
-      <div class="feature-card">
-        🔊 Voice<br><p>Engage with voice channels and enjoy clear audio streaming.</p>
-      </div>
-      <div class="feature-card">
-        🎮 Games<br><p>Play interactive games with server members.</p>
-      </div>
-      <div class="feature-card">
-        👋 Welcomer<br><p>Greet new members automatically with custom messages.</p>
-      </div>
-      <div class="feature-card">
-        🎫 Ticketing<br><p>Manage support requests easily through a ticket system.</p>
-      </div>
-      <div class="feature-card">
-        ✏️ Auto Setup<br><p>Quickly configure the bot with a setup command.</p>
-      </div>
-      <div class="feature-card">
-        🧩 Autorole<br><p>Assign roles to members automatically when they join.</p>
-      </div>
-      <div class="feature-card">
-        🎉 Fun<br><p>Access fun commands to entertain your server members.</p>
-      </div>
-      <div class="feature-card">
-        📜 Logging<br><p>Track server activity such as joins, leaves, and message edits.</p>
-      </div>
+      <div class="feature-card">🔊 Voice<p>Engage with voice channels and enjoy clear audio streaming.</p></div>
+      <div class="feature-card">🎮 Games<p>Play interactive games with server members.</p></div>
+      <div class="feature-card">👋 Welcomer<p>Greet new members automatically with custom messages.</p></div>
+      <div class="feature-card">🎫 Ticketing<p>Manage support requests easily through a ticket system.</p></div>
+      <div class="feature-card">✏️ Auto Setup<p>Quickly configure the bot with a setup command.</p></div>
+      <div class="feature-card">🧩 Autorole<p>Assign roles to members automatically when they join.</p></div>
+      <div class="feature-card">🎉 Fun<p>Access fun commands to entertain your server members.</p></div>
+      <div class="feature-card">📜 Logging<p>Track server activity such as joins, leaves, and message edits.</p></div>
     </div>
 
     <h2>🪐 Bot Features</h2>
     <div class="feature-grid">
-      <div class="feature-card">
-        🛡 Security<br><p>Protect your server from raids, spam, and malicious actions.</p>
-      </div>
-      <div class="feature-card">
-        🤖 Automod<br><p>Automatic moderation for messages, links, and bad words.</p>
-      </div>
-      <div class="feature-card">
-        🛠 Utility<br><p>Server management tools and helpful commands.</p>
-      </div>
-      <div class="feature-card">
-        🎵 Music<br><p>Play music in voice channels from YouTube, Spotify, and more.</p>
-      </div>
-      <div class="feature-card">
-        🛡 Moderation<br><p>Ban, kick, mute, and manage members effectively.</p>
-      </div>
-      <div class="feature-card">
-        🎁 Giveaway<br><p>Create giveaways with timers, winners, and prizes.</p>
-      </div>
-      <div class="feature-card">
-        🤖 AI<br><p>Ask questions, get suggestions, or generate text using AI commands.</p>
-      </div>
-      <div class="feature-card">
-        💾 Backup<br><p>Backup server settings and roles to prevent data loss.</p>
-      </div>
-      <div class="feature-card">
-        📺 Roleplay<br><p>Interactive roleplay commands for server engagement.</p>
-      </div>
-      <div class="feature-card">
-        📝 Staff Application<br><p>Collect and manage applications for staff positions.</p>
-      </div>
+      <div class="feature-card">🛡 Security<p>Protect your server from raids, spam, and malicious actions.</p></div>
+      <div class="feature-card">🤖 Automod<p>Automatic moderation for messages, links, and bad words.</p></div>
+      <div class="feature-card">🛠 Utility<p>Server management tools and helpful commands.</p></div>
+      <div class="feature-card">🎵 Music<p>Play music in voice channels from YouTube, Spotify, and more.</p></div>
+      <div class="feature-card">🛡 Moderation<p>Ban, kick, mute, and manage members effectively.</p></div>
+      <div class="feature-card">🎁 Giveaway<p>Create giveaways with timers, winners, and prizes.</p></div>
+      <div class="feature-card">🤖 AI<p>Ask questions, get suggestions, or generate text using AI commands.</p></div>
+      <div class="feature-card">💾 Backup<p>Backup server settings and roles to prevent data loss.</p></div>
+      <div class="feature-card">📺 Roleplay<p>Interactive roleplay commands for server engagement.</p></div>
+      <div class="feature-card">📝 Staff Application<p>Collect and manage applications for staff positions.</p></div>
     </div>
   </section>
 
- <!-- DEVELOPERS -->
-<section class="developers">
-  <h2>Developers</h2>
-  <div class="dev-list">
-    <a href="https://discord.com/users/1423139998349267025" target="_blank">Aarav</a>
-  </div>
-</section>
+  <!-- DEVELOPERS -->
+  <section class="developers">
+    <h2>Developers</h2>
+    <div class="dev-list">
+      <a href="https://discord.com/users/1423139998349267025" target="_blank">Aarav</a>
+    </div>
+  </section>
 
-<!-- OWNERS -->
-<section class="developers">
-  <h2>Owners</h2>
-  <div class="dev-list">
-    <a href="https://discord.com/users/1384879164204515399" target="_blank">Aayu</a>
-    <a href="https://discord.com/users/1423139998349267025" target="_blank">Aarav</a>
-    <a href="https://discord.com/users/1402267752294518927" target="_blank">Phantom</a>
-  </div>
-</section>
-
+  <!-- OWNERS -->
+  <section class="developers">
+    <h2>Owners</h2>
+    <div class="dev-list">
+      <a href="https://discord.com/users/1384879164204515399" target="_blank">Aayu</a>
+      <a href="https://discord.com/users/1423139998349267025" target="_blank">Aarav</a>
+      <a href="https://discord.com/users/1402267752294518927" target="_blank">Phantom</a>
+    </div>
+  </section>
 
   <footer>
     © 2025 AxioN Bot. All rights reserved.
   </footer>
 
-  <!-- Lightweight Particle Script -->
+  <!-- Particle Script -->
   <script>
     const canvas = document.getElementById('particles-cool');
     const ctx = canvas.getContext('2d');
@@ -231,10 +249,10 @@
       constructor(){
         this.x = Math.random()*width;
         this.y = Math.random()*height;
-        this.size = Math.random()*2+0.5;
-        this.speedX = (Math.random()-0.5)*0.2;
-        this.speedY = (Math.random()-0.5)*0.2;
-        this.color = `rgba(138,43,226,${Math.random()*0.5+0.3})`;
+        this.size = Math.random()*3+1;
+        this.speedX = (Math.random()-0.5)*0.5;
+        this.speedY = (Math.random()-0.5)*0.5;
+        this.color = `rgba(138,43,226,${Math.random()*0.6+0.2})`;
       }
       update(){
         this.x += this.speedX;
@@ -253,7 +271,7 @@
     }
 
     const particles = [];
-    for(let i=0;i<80;i++) particles.push(new Particle());
+    for(let i=0;i<120;i++) particles.push(new Particle());
 
     function animate(){
       ctx.clearRect(0,0,width,height);
