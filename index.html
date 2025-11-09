@@ -55,12 +55,10 @@ body{
 .feature-card:hover{transform:translateY(-10px) scale(1.05);box-shadow:0 10px 40px rgba(199,125,255,0.7);}
 @keyframes fadeUp{to{opacity:1;transform:translateY(0);}}
 
-/* Devs & Owners */
-.developers{max-width:900px;margin:60px auto;text-align:center;padding:20px;position:relative;z-index:1;}
-.developers h2{margin-bottom:20px;font-size:28px;color:var(--accent);}
-.dev-list{display:flex;justify-content:center;gap:20px;flex-wrap:wrap;}
-.dev-list a{color:var(--accent2);font-weight:600;text-decoration:none;transition:0.3s;padding:10px 20px;border-radius:12px;background: rgba(20,18,27,0.5);backdrop-filter:blur(6px);box-shadow:0 0 10px var(--accent2);}
-.dev-list a:hover{color:#fff;text-shadow:0 0 15px var(--accent2);transform:scale(1.1);box-shadow:0 0 25px var(--accent);}
+/* Premium Section */
+.premium .feature-card p:last-child{margin-top:15px;color:#fff;font-weight:600;}
+.subscribe-btn{display:inline-block;margin-top:15px;padding:10px 24px;border-radius:999px;background:linear-gradient(90deg,var(--accent),var(--accent2));color:#fff;font-weight:600;text-decoration:none;transition:0.3s;}
+.subscribe-btn:hover{transform:scale(1.05);box-shadow:0 0 25px var(--accent2);}
 
 /* Footer */
 footer{max-width:1100px;margin:40px auto;padding:20px;color:var(--text-muted);text-align:center;position:relative;z-index:1;font-size:14px;}
@@ -113,19 +111,19 @@ footer{max-width:1100px;margin:40px auto;padding:20px;color:var(--text-muted);te
   </div>
 </section>
 
-<section class="developers">
-  <h2>Developers</h2>
-  <div class="dev-list">
-    <a href="https://discord.com/users/1423139998349267025" target="_blank">Aarav</a>
-  </div>
-</section>
-
-<section class="developers">
-  <h2>Owners</h2>
-  <div class="dev-list">
-    <a href="https://discord.com/users/1384879164204515399" target="_blank">Aayu</a>
-    <a href="https://discord.com/users/1423139998349267025" target="_blank">Aarav</a>
-    <a href="https://discord.com/users/1402267752294518927" target="_blank">Phantom</a>
+<section class="features premium">
+  <h2>💎 Premium Features</h2>
+  <div class="feature-grid">
+    <div class="feature-card">
+      ✨ <strong>No-Prefix</strong>
+      <p>Use commands without any prefix for faster interaction.</p>
+      <a class="subscribe-btn" href="https://discord.gg/XbfvYQVKT7" target="_blank">Subscribe Now</a>
+    </div>
+    <div class="feature-card">
+      🛠 <strong>Custom Bot Features</strong>
+      <p>Get access to exclusive custom commands and AI features.</p>
+      <a class="subscribe-btn" href="https://discord.gg/XbfvYQVKT7" target="_blank">Subscribe Now</a>
+    </div>
   </div>
 </section>
 
@@ -141,7 +139,6 @@ window.addEventListener('resize',()=>{w=canvas.width=window.innerWidth;h=canvas.
 class Particle{constructor(){this.x=Math.random()*w;this.y=Math.random()*h;this.size=Math.random()*3+1;this.speedX=(Math.random()-0.5)*0.5;this.speedY=(Math.random()-0.5)*0.5;this.color=`rgba(138,43,226,${Math.random()*0.6+0.2})`;}update(){this.x+=this.speedX;this.y+=this.speedY;if(this.x<0)this.x=w;if(this.x>w)this.x=0;if(this.y<0)this.y=h;if(this.y>h)this.y=0;}draw(){ctx.beginPath();ctx.arc(this.x,this.y,this.size,0,Math.PI*2);ctx.fillStyle=this.color;ctx.fill();}}
 const particlesArr=[];for(let i=0;i<200;i++)particlesArr.push(new Particle());
 function animate(){ctx.clearRect(0,0,w,h);particlesArr.forEach(p=>{p.update();p.draw();});requestAnimationFrame(animate);}
-animate();
 
 // Scroll fade animation
 const cards=document.querySelectorAll('.feature-card');
