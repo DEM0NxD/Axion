@@ -1,288 +1,169 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>AxioN — Discord Bot</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --bg:#0b0b0f;
-      --card:rgba(20,18,27,0.5);
-      --accent:#8a2be2; 
-      --accent-2:#c77dff; 
-      --muted:#aaa0b9;
-      --glow:#c77dff;
-    }
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AxioN — Discord Bot</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:#0b0b0f;
+    --card:rgba(30,20,50,0.7);
+    --accent:#8a2be2;
+    --accent-2:#c77dff;
+    --muted:#aaa0b9;
+    --glow:#c77dff;
+  }
 
-    *{box-sizing:border-box; margin:0; padding:0;}
-    body {
-      font-family:Inter,system-ui,Arial; 
-      background: linear-gradient(135deg,#0b0b0f,#2a003d);
-      background-size: 400% 400%;
-      animation: gradientBG 15s ease infinite;
-      color:#f5eaff; 
-      overflow-x:hidden;
-      position: relative;
-    }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{
+    font-family:Inter,sans-serif;
+    background: linear-gradient(135deg,#0b0b0f,#2a003d);
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
+    color:#f5eaff;
+    overflow-x:hidden;
+  }
+  @keyframes gradientBG{
+    0%{background-position:0% 50%;}
+    50%{background-position:100% 50%;}
+    100%{background-position:0% 50%;}
+  }
 
-    @keyframes gradientBG {
-      0%{background-position:0% 50%;}
-      50%{background-position:100% 50%;}
-      100%{background-position:0% 50%;}
-    }
+  /* Small Particles */
+  #particles-cool{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none;}
 
-    /* SMALL MOVING PARTICLES */
-    #particles-cool {
-      position: fixed;
-      top:0; left:0;
-      width:100%;
-      height:100%;
-      z-index:0;
-      pointer-events:none;
-      background: transparent;
-    }
+  /* Header / Hero */
+  header.hero{padding:120px 20px;text-align:center;position:relative;z-index:1;}
+  .hero-inner{max-width:900px;margin:0 auto;}
+  .avatar{width:160px;height:160px;border-radius:25px;margin:0 auto 20px;box-shadow:0 0 40px rgba(138,43,226,0.7);animation:float 4s ease-in-out infinite;transition:all 0.5s;}
+  .avatar img{width:100%;height:100%;object-fit:cover;}
+  .avatar:hover{transform:scale(1.2) rotate(5deg);box-shadow:0 0 70px var(--accent-2);}
+  @keyframes float{0%,100%{transform:translateY(0);}50%{transform:translateY(-10px);}}
 
-    /* HERO */
-    .hero{
-      padding: 100px 20px; 
-      text-align:center;
-      position: relative;
-      z-index:1;
-    }
-    .hero-inner{max-width:900px; margin:0 auto;}
-    .avatar{
-      width:140px; height:140px; border-radius:25px; overflow:hidden; 
-      margin:0 auto 20px; 
-      box-shadow:0 0 30px rgba(138,43,226,0.7); 
-      transition: transform 0.5s ease, box-shadow 0.5s ease;
-      animation: float 4s ease-in-out infinite;
-    }
-    .avatar img{width:100%; height:100%; object-fit:cover;}
-    .avatar:hover{
-      transform:scale(1.2) rotate(5deg);
-      box-shadow:0 0 60px var(--accent-2);
-    }
-    @keyframes float {
-      0%, 100% { transform: translateY(0px);}
-      50% { transform: translateY(-10px);}
-    }
+  h1{font-size:48px;margin:12px 0;background:linear-gradient(90deg,var(--accent),var(--accent-2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+  p.lead{color:var(--muted);margin:6px 0 24px;font-size:18px;}
 
-    h1{
-      font-size:48px; 
-      margin:12px 0; 
-      letter-spacing:1px;
-      background: linear-gradient(90deg,var(--accent),var(--accent-2));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-    p.lead{color:var(--muted); margin:6px 0 24px;}
+  .cta{display:inline-flex;gap:16px;flex-wrap:wrap;justify-content:center;margin-top:20px;}
+  .btn{background:transparent;border:1px solid rgba(255,255,255,0.2);padding:14px 28px;border-radius:999px;color:#fff;font-weight:600;text-decoration:none;transition:all 0.3s;backdrop-filter:blur(4px);}
+  .btn.primary{background:linear-gradient(90deg,var(--accent),var(--accent-2));border:none;box-shadow:0 0 20px rgba(138,43,226,0.5);}
+  .btn:hover{transform:scale(1.1);box-shadow:0 0 40px rgba(199,125,255,0.9);}
+  .btn:active{transform:scale(0.95);}
 
-    /* BUTTONS */
-    .cta{display:inline-flex; gap:16px; margin-top:18px; flex-wrap:wrap;}
-    .btn{
-      background:transparent; 
-      border:1px solid rgba(255,255,255,0.2); 
-      padding:14px 24px; 
-      border-radius:999px; 
-      color:#fff; 
-      text-decoration:none; 
-      font-weight:600; 
-      transition:all 0.3s ease; 
-      backdrop-filter: blur(4px);
-    }
-    .btn.primary{
-      background:linear-gradient(90deg,var(--accent),var(--accent-2)); 
-      border:none; 
-      box-shadow:0 0 20px rgba(138,43,226,0.5);
-    }
-    .btn:hover{
-      transform:scale(1.1);
-      box-shadow:0 0 40px rgba(199,125,255,0.9);
-    }
-    .btn:active{transform:scale(0.95);}
+  /* Features Section */
+  section.features-list{max-width:1200px;margin:80px auto;padding:0 20px;position:relative;z-index:1;}
+  section.features-list h2{color:var(--accent-2);text-align:center;margin-bottom:40px;font-size:32px;}
+  .feature-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:30px;}
+  .feature-card{background:var(--card);color:#fff;padding:25px 20px;border-radius:20px;text-align:center;font-weight:600;box-shadow:0 6px 20px rgba(138,43,226,0.3);backdrop-filter:blur(8px);transition:all 0.3s;}
+  .feature-card:hover{transform:translateY(-10px) scale(1.05);box-shadow:0 10px 40px rgba(199,125,255,0.7);}
+  .feature-card p{font-weight:400;font-size:14px;color:var(--muted);margin-top:12px;}
 
-    /* FEATURES LIST */
-    .features-list {max-width:1200px; margin:60px auto; padding:0 20px; display:grid; gap:40px; position: relative; z-index:1;}
-    .features-list h2{color:var(--accent-2); text-align:center; margin-bottom:20px; font-size:32px;}
+  /* Developers & Owners */
+  .developers{max-width:900px;margin:60px auto;text-align:center;padding:20px;position:relative;z-index:1;}
+  .developers h2{margin-bottom:20px;font-size:28px;color:var(--accent);}
+  .dev-list{display:flex;justify-content:center;gap:20px;flex-wrap:wrap;}
+  .dev-list a{color:var(--accent-2);font-weight:600;text-decoration:none;transition:0.3s;padding:10px 20px;border-radius:12px;background: rgba(20,18,27,0.5);backdrop-filter:blur(6px);box-shadow:0 0 10px var(--accent-2);}
+  .dev-list a:hover{color:#fff;text-shadow:0 0 15px var(--accent-2);transform:scale(1.1);box-shadow:0 0 25px var(--accent);}
 
-    .feature-grid {
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
-      gap:20px;
-    }
+  footer{max-width:1100px;margin:40px auto;padding:20px;color:var(--muted);text-align:center;position:relative;z-index:1;font-size:14px;}
 
-    .feature-card {
-      background: var(--card);
-      color:#fff;
-      padding:20px 15px;
-      border-radius:20px;
-      text-align:center;
-      font-weight:600;
-      box-shadow:0 6px 20px rgba(138,43,226,0.3);
-      backdrop-filter: blur(8px);
-      transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
-    }
-    .feature-card:hover {
-      transform:translateY(-10px) scale(1.05);
-      box-shadow:0 10px 40px rgba(199,125,255,0.7);
-      background: rgba(30,20,50,0.7);
-    }
-    .feature-card p{
-      font-weight:400; 
-      font-size:14px; 
-      color:var(--muted); 
-      margin-top:10px;
-    }
-
-    /* DEVELOPERS & OWNERS */
-    .developers{max-width:900px; margin:40px auto; text-align:center; padding:20px; position: relative; z-index:1;}
-    .developers h2{margin-bottom:10px; font-size:28px; color:var(--accent);}
-    .dev-list{display:flex; justify-content:center; gap:20px; flex-wrap:wrap;}
-    .dev-list a{
-      color:var(--accent-2); 
-      font-weight:600; 
-      text-decoration:none; 
-      transition:0.3s; 
-      padding:8px 16px;
-      border-radius:12px;
-      background: rgba(20,18,27,0.5);
-      backdrop-filter: blur(6px);
-      box-shadow:0 0 10px var(--accent-2);
-    }
-    .dev-list a:hover{
-      color:#fff; 
-      text-shadow:0 0 15px var(--accent-2); 
-      transform:scale(1.1);
-      box-shadow:0 0 25px var(--accent);
-    }
-
-    footer{
-      max-width:1100px; margin:40px auto; padding:20px; color:var(--muted); text-align:center; position: relative; z-index:1;
-    }
-
-    @media (max-width:880px){
-      h1{font-size:38px;}
-      .feature-grid{grid-template-columns:repeat(auto-fit,minmax(160px,1fr));}
-    }
-  </style>
+  @media (max-width:880px){
+    h1{font-size:38px;}
+    .feature-grid{grid-template-columns:repeat(auto-fit,minmax(180px,1fr));}
+  }
+</style>
 </head>
 <body>
-  <!-- Small Moving Particles -->
-  <canvas id="particles-cool"></canvas>
+<canvas id="particles-cool"></canvas>
 
-  <!-- HERO -->
-  <header class="hero">
-    <div class="hero-inner">
-      <div class="avatar"><img src="axxx.png" alt="Bot Avatar"></div>
-      <h1>AxioN — Moderation, Security, Utilities & AI</h1>
-      <p class="lead">Moderation, Security, Utilities, and AI-powered commands — All in One Bot.</p>
-
-      <div class="cta">
-        <a class="btn primary" href="https://discord.com/oauth2/authorize?client_id=1428557863109922856&permissions=8&scope=bot">Invite Bot</a>
-        <a class="btn" href="https://discord.gg/XbfvYQVKT7">Discord Server</a>
-      </div>
+<header class="hero">
+  <div class="hero-inner">
+    <div class="avatar"><img src="axxx.png" alt="AxioN Bot"></div>
+    <h1>AxioN — Moderation, Security, Utilities & AI</h1>
+    <p class="lead">Moderation, Security, Utilities, and AI-powered commands — All in One Bot.</p>
+    <div class="cta">
+      <a class="btn primary" href="https://discord.com/oauth2/authorize?client_id=1428557863109922856&permissions=8&scope=bot">Invite Bot</a>
+      <a class="btn" href="https://discord.gg/XbfvYQVKT7">Discord Server</a>
     </div>
-  </header>
+  </div>
+</header>
 
-  <!-- GENERAL FEATURES LIST -->
-  <section class="features-list">
-    <h2>🏠 General Features</h2>
-    <div class="feature-grid">
-      <div class="feature-card">🔊 Voice<p>Engage with voice channels and enjoy clear audio streaming.</p></div>
-      <div class="feature-card">🎮 Games<p>Play interactive games with server members.</p></div>
-      <div class="feature-card">👋 Welcomer<p>Greet new members automatically with custom messages.</p></div>
-      <div class="feature-card">🎫 Ticketing<p>Manage support requests easily through a ticket system.</p></div>
-      <div class="feature-card">✏️ Auto Setup<p>Quickly configure the bot with a setup command.</p></div>
-      <div class="feature-card">🧩 Autorole<p>Assign roles to members automatically when they join.</p></div>
-      <div class="feature-card">🎉 Fun<p>Access fun commands to entertain your server members.</p></div>
-      <div class="feature-card">📜 Logging<p>Track server activity such as joins, leaves, and message edits.</p></div>
-    </div>
+<section class="features-list">
+  <h2>🪐 Bot Features</h2>
+  <div class="feature-grid">
+    <div class="feature-card">🛡 Security<p>Protect your server from raids, spam, and malicious actions.</p></div>
+    <div class="feature-card">🤖 Automod<p>Automatic moderation for messages, links, and bad words.</p></div>
+    <div class="feature-card">🛠 Utility<p>Server management tools and helpful commands.</p></div>
+    <div class="feature-card">🎵 Music<p>Play music in voice channels from YouTube, Spotify, and more.</p></div>
+    <div class="feature-card">🛡 Moderation<p>Ban, kick, mute, and manage members effectively.</p></div>
+    <div class="feature-card">🎁 Giveaway<p>Create giveaways with timers, winners, and prizes.</p></div>
+    <div class="feature-card">🤖 AI<p>Ask questions, get suggestions, or generate text using AI commands.</p></div>
+    <div class="feature-card">💾 Backup<p>Backup server settings and roles to prevent data loss.</p></div>
+    <div class="feature-card">📺 Roleplay<p>Interactive roleplay commands for server engagement.</p></div>
+    <div class="feature-card">📝 Staff Application<p>Collect and manage applications for staff positions.</p></div>
+  </div>
+</section>
 
-    <h2>🪐 Bot Features</h2>
-    <div class="feature-grid">
-      <div class="feature-card">🛡 Security<p>Protect your server from raids, spam, and malicious actions.</p></div>
-      <div class="feature-card">🤖 Automod<p>Automatic moderation for messages, links, and bad words.</p></div>
-      <div class="feature-card">🛠 Utility<p>Server management tools and helpful commands.</p></div>
-      <div class="feature-card">🎵 Music<p>Play music in voice channels from YouTube, Spotify, and more.</p></div>
-      <div class="feature-card">🛡 Moderation<p>Ban, kick, mute, and manage members effectively.</p></div>
-      <div class="feature-card">🎁 Giveaway<p>Create giveaways with timers, winners, and prizes.</p></div>
-      <div class="feature-card">🤖 AI<p>Ask questions, get suggestions, or generate text using AI commands.</p></div>
-      <div class="feature-card">💾 Backup<p>Backup server settings and roles to prevent data loss.</p></div>
-      <div class="feature-card">📺 Roleplay<p>Interactive roleplay commands for server engagement.</p></div>
-      <div class="feature-card">📝 Staff Application<p>Collect and manage applications for staff positions.</p></div>
-    </div>
-  </section>
+<section class="developers">
+  <h2>Developers</h2>
+  <div class="dev-list">
+    <a href="https://discord.com/users/1423139998349267025" target="_blank">Aarav</a>
+  </div>
+</section>
 
-  <!-- DEVELOPERS -->
-  <section class="developers">
-    <h2>Developers</h2>
-    <div class="dev-list">
-      <a href="https://discord.com/users/1423139998349267025" target="_blank">Aarav</a>
-    </div>
-  </section>
+<section class="developers">
+  <h2>Owners</h2>
+  <div class="dev-list">
+    <a href="https://discord.com/users/1384879164204515399" target="_blank">Aayu</a>
+    <a href="https://discord.com/users/1423139998349267025" target="_blank">Aarav</a>
+    <a href="https://discord.com/users/1402267752294518927" target="_blank">Phantom</a>
+  </div>
+</section>
 
-  <!-- OWNERS -->
-  <section class="developers">
-    <h2>Owners</h2>
-    <div class="dev-list">
-      <a href="https://discord.com/users/1384879164204515399" target="_blank">Aayu</a>
-      <a href="https://discord.com/users/1423139998349267025" target="_blank">Aarav</a>
-      <a href="https://discord.com/users/1402267752294518927" target="_blank">Phantom</a>
-    </div>
-  </section>
+<footer>
+  © 2025 AxioN Bot. All rights reserved.
+</footer>
 
-  <footer>
-    © 2025 AxioN Bot. All rights reserved.
-  </footer>
+<script>
+const canvas=document.getElementById('particles-cool');
+const ctx=canvas.getContext('2d');
+let width=canvas.width=window.innerWidth;
+let height=canvas.height=window.innerHeight;
 
-  <!-- Particle Script -->
-  <script>
-    const canvas = document.getElementById('particles-cool');
-    const ctx = canvas.getContext('2d');
-    let width = canvas.width = window.innerWidth;
-    let height = canvas.height = window.innerHeight;
+window.addEventListener('resize',()=>{width=canvas.width=window.innerWidth;height=canvas.height=window.innerHeight;});
 
-    window.addEventListener('resize', ()=>{width=canvas.width=window.innerWidth;height=canvas.height=window.innerHeight;});
-
-    class Particle {
-      constructor(){
-        this.x = Math.random()*width;
-        this.y = Math.random()*height;
-        this.size = Math.random()*3+1;
-        this.speedX = (Math.random()-0.5)*0.5;
-        this.speedY = (Math.random()-0.5)*0.5;
-        this.color = `rgba(138,43,226,${Math.random()*0.6+0.2})`;
-      }
-      update(){
-        this.x += this.speedX;
-        this.y += this.speedY;
-        if(this.x<0)this.x=width;
-        if(this.x>width)this.x=0;
-        if(this.y<0)this.y=height;
-        if(this.y>height)this.y=0;
-      }
-      draw(){
-        ctx.beginPath();
-        ctx.arc(this.x,this.y,this.size,0,Math.PI*2);
-        ctx.fillStyle=this.color;
-        ctx.fill();
-      }
-    }
-
-    const particles = [];
-    for(let i=0;i<120;i++) particles.push(new Particle());
-
-    function animate(){
-      ctx.clearRect(0,0,width,height);
-      particles.forEach(p=>{
-        p.update();
-        p.draw();
-      });
-      requestAnimationFrame(animate);
-    }
-
-    animate();
-  </script>
+class Particle{
+  constructor(){
+    this.x=Math.random()*width;
+    this.y=Math.random()*height;
+    this.size=Math.random()*3+1;
+    this.speedX=(Math.random()-0.5)*0.5;
+    this.speedY=(Math.random()-0.5)*0.5;
+    this.color=`rgba(138,43,226,${Math.random()*0.6+0.2})`;
+  }
+  update(){
+    this.x+=this.speedX;
+    this.y+=this.speedY;
+    if(this.x<0)this.x=width;
+    if(this.x>width)this.x=0;
+    if(this.y<0)this.y=height;
+    if(this.y>height)this.y=0;
+  }
+  draw(){
+    ctx.beginPath();
+    ctx.arc(this.x,this.y,this.size,0,Math.PI*2);
+    ctx.fillStyle=this.color;
+    ctx.fill();
+  }
+}
+const particles=[];
+for(let i=0;i<150;i++)particles.push(new Particle());
+function animate(){
+  ctx.clearRect(0,0,width,height);
+  particles.forEach(p=>{p.update();p.draw();});
+  requestAnimationFrame(animate);
+}
+animate();
+</script>
 </body>
 </html>
