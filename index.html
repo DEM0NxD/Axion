@@ -1,16 +1,16 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>AxioN — Discord Bot</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
 <style>
   :root {
     --bg:#0b0b0f;
+    --gradient1:#8a2be2;
+    --gradient2:#c77dff;
     --card:rgba(30,20,50,0.7);
-    --accent:#8a2be2;
-    --accent-2:#c77dff;
     --muted:#aaa0b9;
     --glow:#c77dff;
   }
@@ -18,9 +18,9 @@
   *{box-sizing:border-box;margin:0;padding:0;}
   body{
     font-family:Inter,sans-serif;
-    background: linear-gradient(135deg,#0b0b0f,#2a003d);
-    background-size: 400% 400%;
-    animation: gradientBG 15s ease infinite;
+    background: linear-gradient(135deg,var(--bg),#2a003d);
+    background-size:400% 400%;
+    animation:gradientBG 15s ease infinite;
     color:#f5eaff;
     overflow-x:hidden;
   }
@@ -30,50 +30,61 @@
     100%{background-position:0% 50%;}
   }
 
-  /* Small Particles */
+  /* Particles */
   #particles-cool{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none;}
 
-  /* Header / Hero */
+  /* HERO */
   header.hero{padding:120px 20px;text-align:center;position:relative;z-index:1;}
   .hero-inner{max-width:900px;margin:0 auto;}
   .avatar{width:160px;height:160px;border-radius:25px;margin:0 auto 20px;box-shadow:0 0 40px rgba(138,43,226,0.7);animation:float 4s ease-in-out infinite;transition:all 0.5s;}
   .avatar img{width:100%;height:100%;object-fit:cover;}
-  .avatar:hover{transform:scale(1.2) rotate(5deg);box-shadow:0 0 70px var(--accent-2);}
+  .avatar:hover{transform:scale(1.2) rotate(5deg);box-shadow:0 0 70px var(--gradient2);}
   @keyframes float{0%,100%{transform:translateY(0);}50%{transform:translateY(-10px);}}
 
-  h1{font-size:48px;margin:12px 0;background:linear-gradient(90deg,var(--accent),var(--accent-2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+  h1{font-size:48px;margin:12px 0;line-height:1.1;background:linear-gradient(90deg,var(--gradient1),var(--gradient2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
   p.lead{color:var(--muted);margin:6px 0 24px;font-size:18px;}
 
   .cta{display:inline-flex;gap:16px;flex-wrap:wrap;justify-content:center;margin-top:20px;}
   .btn{background:transparent;border:1px solid rgba(255,255,255,0.2);padding:14px 28px;border-radius:999px;color:#fff;font-weight:600;text-decoration:none;transition:all 0.3s;backdrop-filter:blur(4px);}
-  .btn.primary{background:linear-gradient(90deg,var(--accent),var(--accent-2));border:none;box-shadow:0 0 20px rgba(138,43,226,0.5);}
+  .btn.primary{background:linear-gradient(90deg,var(--gradient1),var(--gradient2));border:none;box-shadow:0 0 20px rgba(138,43,226,0.5);}
   .btn:hover{transform:scale(1.1);box-shadow:0 0 40px rgba(199,125,255,0.9);}
   .btn:active{transform:scale(0.95);}
 
-  /* Features Section */
+  /* Features Sections */
   section.features-list{max-width:1200px;margin:80px auto;padding:0 20px;position:relative;z-index:1;}
-  section.features-list h2{color:var(--accent-2);text-align:center;margin-bottom:40px;font-size:32px;}
+  section.features-list h2{color:var(--gradient2);text-align:center;margin-bottom:40px;font-size:32px;letter-spacing:1px;}
+
   .feature-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:30px;}
-  .feature-card{background:var(--card);color:#fff;padding:25px 20px;border-radius:20px;text-align:center;font-weight:600;box-shadow:0 6px 20px rgba(138,43,226,0.3);backdrop-filter:blur(8px);transition:all 0.3s;}
-  .feature-card:hover{transform:translateY(-10px) scale(1.05);box-shadow:0 10px 40px rgba(199,125,255,0.7);}
+  .feature-card{
+    background:var(--card);color:#fff;padding:25px 20px;border-radius:20px;text-align:center;font-weight:600;box-shadow:0 6px 20px rgba(138,43,226,0.3);backdrop-filter:blur(8px);transition:all 0.3s;
+    opacity:0; transform:translateY(20px); animation:fadeUp 0.6s forwards;
+  }
+  .feature-card:nth-child(1){animation-delay:0.1s;}
+  .feature-card:nth-child(2){animation-delay:0.2s;}
+  .feature-card:nth-child(3){animation-delay:0.3s;}
+  .feature-card:nth-child(4){animation-delay:0.4s;}
+  .feature-card:nth-child(5){animation-delay:0.5s;}
+  .feature-card:nth-child(6){animation-delay:0.6s;}
+  .feature-card:nth-child(7){animation-delay:0.7s;}
+  .feature-card:nth-child(8){animation-delay:0.8s;}
   .feature-card p{font-weight:400;font-size:14px;color:var(--muted);margin-top:12px;}
+  .feature-card:hover{transform:translateY(-10px) scale(1.05);box-shadow:0 10px 40px rgba(199,125,255,0.7);}
+
+  @keyframes fadeUp{to{opacity:1;transform:translateY(0);}}
 
   /* Developers & Owners */
   .developers{max-width:900px;margin:60px auto;text-align:center;padding:20px;position:relative;z-index:1;}
-  .developers h2{margin-bottom:20px;font-size:28px;color:var(--accent);}
+  .developers h2{margin-bottom:20px;font-size:28px;color:var(--gradient1);}
   .dev-list{display:flex;justify-content:center;gap:20px;flex-wrap:wrap;}
-  .dev-list a{color:var(--accent-2);font-weight:600;text-decoration:none;transition:0.3s;padding:10px 20px;border-radius:12px;background: rgba(20,18,27,0.5);backdrop-filter:blur(6px);box-shadow:0 0 10px var(--accent-2);}
-  .dev-list a:hover{color:#fff;text-shadow:0 0 15px var(--accent-2);transform:scale(1.1);box-shadow:0 0 25px var(--accent);}
+  .dev-list a{color:var(--gradient2);font-weight:600;text-decoration:none;transition:0.3s;padding:10px 20px;border-radius:12px;background: rgba(20,18,27,0.5);backdrop-filter:blur(6px);box-shadow:0 0 10px var(--gradient2);}
+  .dev-list a:hover{color:#fff;text-shadow:0 0 15px var(--gradient2);transform:scale(1.1);box-shadow:0 0 25px var(--gradient1);}
 
   footer{max-width:1100px;margin:40px auto;padding:20px;color:var(--muted);text-align:center;position:relative;z-index:1;font-size:14px;}
-
-  @media (max-width:880px){
-    h1{font-size:38px;}
-    .feature-grid{grid-template-columns:repeat(auto-fit,minmax(180px,1fr));}
-  }
+  @media (max-width:880px){h1{font-size:38px;}.feature-grid{grid-template-columns:repeat(auto-fit,minmax(180px,1fr));}}
 </style>
 </head>
 <body>
+
 <canvas id="particles-cool"></canvas>
 
 <header class="hero">
@@ -87,6 +98,20 @@
     </div>
   </div>
 </header>
+
+<section class="features-list">
+  <h2>🏠 General Features</h2>
+  <div class="feature-grid">
+    <div class="feature-card">🔊 Voice<p>Engage with voice channels and enjoy clear audio streaming.</p></div>
+    <div class="feature-card">🎮 Games<p>Play interactive games with server members.</p></div>
+    <div class="feature-card">👋 Welcomer<p>Greet new members automatically with custom messages.</p></div>
+    <div class="feature-card">🎫 Ticketing<p>Manage support requests easily through a ticket system.</p></div>
+    <div class="feature-card">✏️ Auto Setup<p>Quickly configure the bot with a setup command.</p></div>
+    <div class="feature-card">🧩 Autorole<p>Assign roles to members automatically when they join.</p></div>
+    <div class="feature-card">🎉 Fun<p>Access fun commands to entertain your server members.</p></div>
+    <div class="feature-card">📜 Logging<p>Track server activity such as joins, leaves, and message edits.</p></div>
+  </div>
+</section>
 
 <section class="features-list">
   <h2>🪐 Bot Features</h2>
@@ -120,16 +145,13 @@
   </div>
 </section>
 
-<footer>
-  © 2025 AxioN Bot. All rights reserved.
-</footer>
+<footer>© 2025 AxioN Bot. All rights reserved.</footer>
 
 <script>
 const canvas=document.getElementById('particles-cool');
 const ctx=canvas.getContext('2d');
 let width=canvas.width=window.innerWidth;
 let height=canvas.height=window.innerHeight;
-
 window.addEventListener('resize',()=>{width=canvas.width=window.innerWidth;height=canvas.height=window.innerHeight;});
 
 class Particle{
@@ -141,29 +163,14 @@ class Particle{
     this.speedY=(Math.random()-0.5)*0.5;
     this.color=`rgba(138,43,226,${Math.random()*0.6+0.2})`;
   }
-  update(){
-    this.x+=this.speedX;
-    this.y+=this.speedY;
-    if(this.x<0)this.x=width;
-    if(this.x>width)this.x=0;
-    if(this.y<0)this.y=height;
-    if(this.y>height)this.y=0;
-  }
-  draw(){
-    ctx.beginPath();
-    ctx.arc(this.x,this.y,this.size,0,Math.PI*2);
-    ctx.fillStyle=this.color;
-    ctx.fill();
-  }
+  update(){this.x+=this.speedX;this.y+=this.speedY;if(this.x<0)this.x=width;if(this.x>width)this.x=0;if(this.y<0)this.y=height;if(this.y>height)this.y=0;}
+  draw(){ctx.beginPath();ctx.arc(this.x,this.y,this.size,0,Math.PI*2);ctx.fillStyle=this.color;ctx.fill();}
 }
 const particles=[];
 for(let i=0;i<150;i++)particles.push(new Particle());
-function animate(){
-  ctx.clearRect(0,0,width,height);
-  particles.forEach(p=>{p.update();p.draw();});
-  requestAnimationFrame(animate);
-}
+function animate(){ctx.clearRect(0,0,width,height);particles.forEach(p=>{p.update();p.draw();});requestAnimationFrame(animate);}
 animate();
 </script>
+
 </body>
 </html>
