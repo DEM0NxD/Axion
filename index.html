@@ -137,7 +137,7 @@ footer{max-width:1100px;margin:40px auto;padding:20px;color:var(--text-muted);te
 <footer>© 2025 AxioN Bot. All rights reserved.</footer>
 
 <script>
-// Particles with connecting lines
+// Old-style floating particles
 const canvas=document.getElementById('particles');
 const ctx=canvas.getContext('2d');
 let w=canvas.width=window.innerWidth;
@@ -150,8 +150,8 @@ class Particle{
     this.x=Math.random()*w;
     this.y=Math.random()*h;
     this.size=Math.random()*3+1;
-    this.speedX=(Math.random()-0.5)*0.7;
-    this.speedY=(Math.random()-0.5)*0.7;
+    this.speedX=(Math.random()-0.5)*0.5;
+    this.speedY=(Math.random()-0.5)*0.5;
     this.color=`rgba(199,125,255,${Math.random()*0.6+0.3})`;
   }
   update(){this.x+=this.speedX;this.y+=this.speedY;if(this.x<0)this.x=w;if(this.x>w)this.x=0;if(this.y<0)this.y=h;if(this.y>h)this.y=0;}
@@ -159,37 +159,9 @@ class Particle{
 }
 
 const particles=[];
-for(let i=0;i<150;i++)particles.push(new Particle());
+for(let i=0;i<120;i++)particles.push(new Particle());
 
-function animate(){
-  ctx.clearRect(0,0,w,h);
-  particles.forEach(p=>{
-    p.update();
-    p.draw();
-  });
-  connectParticles();
-  requestAnimationFrame(animate);
-}
-
-function connectParticles(){
-  for(let a=0;a<particles.length;a++){
-    for(let b=a;b<particles.length;b++){
-      let dx=particles[a].x-particles[b].x;
-      let dy=particles[a].y-particles[b].y;
-      let distance=Math.sqrt(dx*dx+dy*dy);
-      if(distance<120){
-        ctx.beginPath();
-        ctx.strokeStyle=`rgba(199,125,255,${1-distance/120})`;
-        ctx.lineWidth=1;
-        ctx.moveTo(particles[a].x,particles[a].y);
-        ctx.lineTo(particles[b].x,particles[b].y);
-        ctx.stroke();
-        ctx.closePath();
-      }
-    }
-  }
-}
-
+function animate(){ctx.clearRect(0,0,w,h);particles.forEach(p=>{p.update();p.draw();});requestAnimationFrame(animate);}
 animate();
 
 // Scroll fade animation
@@ -197,5 +169,6 @@ const cards=document.querySelectorAll('.feature-card');
 const observer=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.style.animation='fadeUp 0.6s forwards';}})},{threshold:0.2});
 cards.forEach(card=>observer.observe(card));
 </script>
+
 </body>
 </html>
